@@ -7,7 +7,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
-const str = '我爱你祖国'
+// const str = '我爱你祖国'
 
 console.log('123123')
 
