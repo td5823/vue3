@@ -9,7 +9,7 @@ import { defineComponent } from 'vue'
 
 const str = '我爱你祖国'
 
-console.log("123123")
+console.log('123123')
 
 export default defineComponent({
   setup() {
@@ -19,7 +19,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.box{
+.box {
   width: 600px;
   height: 400px;
   background: black;
