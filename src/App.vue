@@ -8,7 +8,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
-console.log('123123')
+console.log("123123")
 
 export default defineComponent({
   setup() {
