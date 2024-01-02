@@ -13,7 +13,13 @@ export default defineComponent({
           {node.children && (
             <i class="icon" onClick={() => handleClickIcon(node.id)} />
           )}
-          <span>{node.name}</span>
+          <span
+            onDragstart={(event) => handleDragStart(event, node.id)}
+            onDragover={(event) => handleDragOver(event)}
+            onDrop={(event) => handleDrop(event, node.id)}
+          >
+            {node.name}
+          </span>
           {node.children &&
             node.children.length > 0 &&
             expandedMenu.value[node.id] && (
@@ -21,6 +27,23 @@ export default defineComponent({
             )}
         </div>
       ))
+    }
+
+    const handleDragStart = (event: any, id: any) => {
+      event.dataTransfer.setData('text/plain', id)
+    }
+
+    const handleDragOver = (event: any) => {
+      event.preventDefault()
+    }
+
+    const handleDrop = (event: any, id: any) => {
+      event.preventDefault()
+      const draggedNodeId = event.dataTransfer.getData('text')
+      // 在这里处理拖拽结束后的逻辑，可以更新树节点位置等
+      // 可以根据 draggedNodeId 和 id 进行节点位置的更新
+      console.log(`Node ${draggedNodeId} dropped on Node ${id}`)
+      // 更新节点位置逻辑
     }
 
     const handleClickIcon = (id: string) => {
@@ -33,12 +56,6 @@ export default defineComponent({
 
     const tree = computed(() => renderTree(treeData))
 
-    return () => (
-      <div>
-        <h1>Hello from JSX!</h1>
-        <p>This is a JSX-enabled Vue component.</p>
-        <div class="tree">{tree.value}</div>
-      </div>
-    )
+    return () => <div class="tree">{tree.value}</div>
   },
 })
